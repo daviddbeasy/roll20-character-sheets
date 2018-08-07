@@ -14,21 +14,22 @@
 	<!-- /HIDDEN FIELDS -->
 
 	<!-- ===== ===== ===== ===== TABS ===== ===== ===== ===== -->
-	<input type="radio" name="attr_tab" class="sheet-tab sheet-tab1" value="1" title="General" checked="checked" />
-	<input type="radio" name="attr_tab" class="sheet-tab sheet-tab2" value="2" title="Traits" />
-	<input type="radio" name="attr_tab" class="sheet-tab sheet-tab3" value="3" title="Skills" />
-	<input type="radio" name="attr_tab" class="sheet-tab sheet-tab4" value="4" title="Combat" />
-	<input type="radio" name="attr_tab" class="sheet-tab sheet-tab5" value="5" title="Wealth" />
-	<input type="radio" name="attr_tab" class="sheet-tab sheet-tab6" value="6" title="Grimoire" />
-	<input type="radio" name="attr_tab" class="sheet-tab sheet-tab0" value="0" title="Sheet Options" alt="y" />
+	<input type="radio" name="attr_tab" value="1" class="sheet-tab sheet-tab1" checked="checked" /><span>General</span>
+	<input type="radio" name="attr_tab" value="2" class="sheet-tab sheet-tab2" /><span>Traits</span>
+	<input type="radio" name="attr_tab" value="3" class="sheet-tab sheet-tab3" /><span>Skills</span>
+	<input type="radio" name="attr_tab" value="4" class="sheet-tab sheet-tab4" /><span>Combat</span>
+	<input type="radio" name="attr_tab" value="5" class="sheet-tab sheet-tab5" /><span>Inventory</span>
+	<input type="radio" name="attr_tab" value="6" class="sheet-tab sheet-tab6" /><span>Grimoire</span>
+	<input type="radio" name="attr_tab" value="7" class="sheet-tab sheet-tab7" /><span>Updates</span>
+	<input type="radio" name="attr_tab" value="0" class="sheet-tab sheet-tab0" /><span title="Sheet Options">y</span>
 	<div class="sheet-tab-br"></div>
 
-
+	
 	<!-- ===== ===== ===== ===== GENERAL TAB ===== ===== ===== ===== -->
 	<div class="sheet-tab1">
 
 		<!-- _____ _____ ATTRIBUTE BOX _____ _____ -->
-			
+
 		<div class="sheet-box sheet-attribute">
 			<div class="sheet-table">
 				<div class="sheet-header">
@@ -302,7 +303,7 @@
 				</div> <!-- .sheet-row -->
 				<div class="sheet-row sheet-sub-row sheet-row-fear">
 					<div class="sheet-cell sheet-col0 sheet-label">
-						<div class="sheet-popup">Fear</div>
+						<div class="sheet-popup">Fright</div>
 						<span class="sheet-tooltip">
 							Fear Check
 							<br />
@@ -323,7 +324,7 @@
 						<input type="number" name="attr_fear_check_points" value="0" step="2" />
 					</div>
 					<div class="sheet-cell sheet-col4">
-						<button type="roll" value="@{roll} [[3d6]] @{VS} Will [[@{fear_check} + @{modifier}]]" name="roll_vsFearCheck" />
+						<button type="roll" value="@{roll} [[3d6]] @{VS} Fright [[@{fear_check} + @{modifier}]]" name="roll_vsFearCheck" />
 					</div>
 				</div> <!-- .sheet-row -->
 				<div class="sheet-row sheet-row-basic-speed sheet-hr">
@@ -596,7 +597,7 @@
 								<tbody>
 									<tr>
 										<td class="sheet-label">Reeling</td>
-										<td><input type="text" name="attr_hp_reeling" value="Less than [[(@{hit_points|max}) / 3]]" disabled="disabled"></td>
+										<td><input type="text" name="attr_hp_reeling" value="[[floor((@{hit_points|max}) / 3)]]" disabled="disabled"></td>
 									</tr>
 									<tr>
 										<td colspan="2">
@@ -605,7 +606,7 @@
 									</tr>
 									<tr>
 										<td class="sheet-label">Verge of Collapse</td>
-										<td><input type="text" value="Less than 0" disabled="disabled"></td>
+										<td><input type="text" value="Less than 0" readonly="readonly"></td>
 									</tr>
 									<tr>
 										<td colspan="2">
@@ -618,7 +619,7 @@
 									</tr>
 									<tr>
 										<td class="sheet-label">Verge of Death</td>
-										<td><input value="(@{hit_points|max}) * -1" disabled="disabled"></td>
+										<td><input type="number" name="attr_hp_verge" value="[[(@{hit_points|max}) * -1]]" disabled="disabled"></td>
 									</tr>
 									<tr>
 										<td colspan="2">
@@ -632,7 +633,7 @@
 									</tr>
 									<tr>
 										<td class="sheet-label">Death</td>
-										<td><input value="(@{hit_points|max}) * -5" disabled="disabled"></td>
+										<td><input type="number" name="attr_hp_death" value="[[(@{hit_points|max}) * -5]]" disabled="disabled"></td>
 									</tr>
 									<tr>
 										<td colspan="2">
@@ -641,7 +642,7 @@
 									</tr>
 									<tr>
 										<td class="sheet-label">Total Destruction</td>
-										<td><input value="(@{hit_points|max}) * -10" disabled="disabled"></td>
+										<td><input type="number" name="attr_hp_destruction" value="[[(@{hit_points|max}) * -10]]" disabled="disabled"></td>
 									</tr>
 									<tr>
 										<td colspan="2">
@@ -653,7 +654,7 @@
 						</span>
 					</div>
 					<div class="sheet-cell sheet-col1">
-						<input type="number" name="attr_hit_points" />
+						<input type="number" name="attr_hit_points" value="10"/>
 					</div>
 				</div> <!-- .sheet-row -->
 				<div class="sheet-row sheet-row-fatigue-points">
@@ -690,7 +691,7 @@
 								<tbody>
 									<tr>
 										<td class="sheet-label">Tired</td>
-										<td><input type="text" name="attr_fp_tired" value="Less than [[(@{fatigue_points|max}) / 3]]" disabled="disabled"></td>
+										<td><input type="number" name="attr_fp_tired" value="[[floor((@{fatigue_points|max}) / 3)]]" disabled="disabled"></td>
 									</tr>
 									<tr>
 										<td colspan="2">
@@ -714,7 +715,7 @@
 									</tr>
 									<tr>
 										<td class="sheet-label">Unconscious</td>
-										<td><input value="[[-(@{fatigue_points|max})]]" disabled="disabled"></td>
+										<td><input type="number" name="attr_fp_unconscious" value="[[-(@{fatigue_points|max})]]" disabled="disabled"></td>
 									</tr>
 									<tr>
 										<td colspan="2">
@@ -730,7 +731,7 @@
 						</span>
 					</div>
 					<div class="sheet-cell sheet-col1">
-						<input type="number" name="attr_fatigue_points" />
+						<input type="number" name="attr_fatigue_points" value="10"/>
 					</div>
 				</div> <!-- .sheet-row -->
 				<div class="sheet-row sheet-row-energy-points">
@@ -806,14 +807,14 @@
 				</div> <!-- .sheet-row -->
 			</div>
 		</div>
-		
+
 
 		<!-- _____ _____ MISCELLENEOUS BOX _____ _____ -->
-		
+
 		<div class="sheet-box sheet-miscelleneous">
 			<div class="sheet-table">
 				<div class="sheet-header">
-					<div class="sheet-cell sheet-col0">Miscelleneous</div>
+					<div class="sheet-cell sheet-col0">Miscellaneous</div>
 					<div class="sheet-cell sheet-col1">Pts</div>
 				</div> <!-- .sheet-header -->
 				<div class="sheet-row sheet-row-tech-level">
@@ -824,7 +825,7 @@
 							<br />
 							It costs 5 points to raise this above or below the campaign"s<br />normal TL.
 							<div class="sheet-clearfix"></div>
-							<table style="text-align: left; widdiv: 100%;">
+							<table style="text-align: left;">
 								<tbody>
 									<tr><td>TL0</td><td>Stone Age (Prehistory and later). </td></tr>
 									<tr><td>TL1</td><td>Bronze Age (3500 B.C.+).</td></tr>
@@ -906,10 +907,10 @@
 				</div> <!-- .sheet-row -->
 			</div> <!-- .sheet-table -->
 		</div> <!-- .sheet-box .sheet-miscelleneous -->
-		
+
 
 		<!-- _____ _____ POINT SUMMARY BOX _____ _____ -->
-		
+
 		<div class="sheet-box sheet-points">
 			<div class="sheet-table">
 				<div class="sheet-header">
@@ -967,10 +968,10 @@
 				</div> <!-- .sheet-row -->
 			</div> <!-- .sheet-table -->
 		</div> <!-- .sheet-box .sheet-points -->
-		
+
 
 		<!-- _____ _____ LIFTING BOX _____ _____ -->
-		
+
 		<div class="sheet-box sheet-lift">
 			<div class="sheet-table">
 				<div class="sheet-header">
@@ -985,7 +986,7 @@
 						</span>
 					</div>
 					<div class="sheet-cell sheet-col1">
-						<input type="text" name="attr_simple_lift" value="@{basic_lift}" disabled="disabled" />
+						<input type="text" name="attr_simple_lift" value="round(@{basic_lift})" disabled="disabled" />
 					</div>
 				</div> <!-- .sheet-row -->
 				<div class="sheet-row sheet-row-one-handed-lift">
@@ -996,7 +997,7 @@
 						</span>
 					</div>
 					<div class="sheet-cell sheet-col1">
-						<input type="text" name="attr_one_hand_lift" value="2 * @{basic_lift}" disabled="disabled" />
+						<input type="text" name="attr_one_hand_lift" value="round(2 * @{basic_lift})" disabled="disabled" />
 					</div>
 				</div> <!-- .sheet-row -->
 				<div class="sheet-row sheet-row-two-handed-lift">
@@ -1007,7 +1008,7 @@
 						</span>
 					</div>
 					<div class="sheet-cell sheet-col1">
-						<input type="text" name="attr_two_hand_lift" value="8 * @{basic_lift}" disabled="disabled" />
+						<input type="text" name="attr_two_hand_lift" value="round(8 * @{basic_lift})" disabled="disabled" />
 					</div>
 				</div> <!-- .sheet-row -->
 				<div class="sheet-row sheet-row-shove-knock-over">
@@ -1018,7 +1019,7 @@
 						</span>
 					</div>
 					<div class="sheet-cell sheet-col1">
-						<input type="text" name="attr_shove_lift" value="12 * @{basic_lift}" disabled="disabled" />
+						<input type="text" name="attr_shove_lift" value="round(12 * @{basic_lift})" disabled="disabled" />
 					</div>
 				</div> <!-- .sheet-row -->
 				<div class="sheet-row sheet-row-running-shove-knock-over">
@@ -1029,7 +1030,7 @@
 						</span>
 					</div>
 					<div class="sheet-cell sheet-col1">
-						<input type="text" name="attr_run_shove_lift" value="24 * @{basic_lift}" disabled="disabled" />
+						<input type="text" name="attr_run_shove_lift" value="round(24 * @{basic_lift})" disabled="disabled" />
 					</div>
 				</div> <!-- .sheet-row -->
 				<div class="sheet-row sheet-row-carry-on-back">
@@ -1040,7 +1041,7 @@
 						</span>
 					</div>
 					<div class="sheet-cell sheet-col1">
-						<input type="text" name="attr_carry_back_lift" value="15 * @{basic_lift}" disabled="disabled" />
+						<input type="text" name="attr_carry_back_lift" value="round(15 * @{basic_lift})" disabled="disabled" />
 					</div>
 				</div> <!-- .sheet-row -->
 				<div class="sheet-row sheet-row-shift-slightly">
@@ -1051,15 +1052,15 @@
 						</span>
 					</div>
 					<div class="sheet-cell sheet-col1">
-						<input type="text" name="attr_shift_lift" value="50 * @{basic_lift}" disabled="disabled" />
+						<input type="text" name="attr_shift_lift" value="round(50 * @{basic_lift})" disabled="disabled" />
 					</div>
 				</div> <!-- .sheet-row -->
 			</div> <!-- .sheet-table -->
 		</div> <!-- .sheet-box .sheet-lift -->
-		
+
 
 		<!-- _____ _____ ENCUMBERANCE BOX _____ _____ -->
-		
+
 		<div class="sheet-box sheet-encumberance">
 			<div class="sheet-table">
 				<div class="sheet-header">
@@ -1087,7 +1088,7 @@
 						Light (1)
 					</div>
 					<div class="sheet-cell sheet-col1">
-						<input type="number" name="attr_lift_1" value="2 * @{basic_lift}" disabled="disabled" />
+						<input type="number" name="attr_lift_1" value="round(2 * @{basic_lift})" disabled="disabled" />
 					</div>
 					<div class="sheet-cell sheet-col2">
 						<input type="number" name="attr_move_1" value="floor((@{basic_move}) * 0.8)" disabled="disabled" />
@@ -1101,7 +1102,7 @@
 						Medium (2)
 					</div>
 					<div class="sheet-cell sheet-col1">
-						<input type="number" name="attr_lift_2" value="3 * @{basic_lift}" disabled="disabled" />
+						<input type="number" name="attr_lift_2" value="round(3 * @{basic_lift})" disabled="disabled" />
 					</div>
 					<div class="sheet-cell sheet-col2">
 						<input type="number" name="attr_move_2" value="floor((@{basic_move}) * 0.6)" disabled="disabled" />
@@ -1115,7 +1116,7 @@
 						Heavy (3)
 					</div>
 					<div class="sheet-cell sheet-col1">
-						<input type="number" name="attr_lift_3" value="6 * @{basic_lift}" disabled="disabled" />
+						<input type="number" name="attr_lift_3" value="round(6 * @{basic_lift})" disabled="disabled" />
 					</div>
 					<div class="sheet-cell sheet-col2">
 						<input type="number" name="attr_move_3" value="floor((@{basic_move}) * 0.4)" disabled="disabled" />
@@ -1129,7 +1130,7 @@
 						X-Heavy (4)
 					</div>
 					<div class="sheet-cell sheet-col1">
-						<input type="number" name="attr_lift_4" value="10 * @{basic_lift}" disabled="disabled" />
+						<input type="number" name="attr_lift_4" value="round(10 * @{basic_lift})" disabled="disabled" />
 					</div>
 					<div class="sheet-cell sheet-col2">
 						<input type="number" name="attr_move_4" value="floor((@{basic_move}) * 0.2)" disabled="disabled" />
@@ -1171,6 +1172,16 @@
 					<div class="sheet-cell sheet-col2">Written</div>
 					<div class="sheet-cell sheet-col3">Pts</div>
 				</div> <!-- .sheet-header -->
+				<div class="sheet-row sheet-row-native-language">
+					<div class="sheet-cell sheet-col0 sheet-label">
+						<input type="text" style="font-weight:bold;" name="attr_name_native_language" value="-Enter Native Language here"  />
+					</div>
+					<div class="sheet-header">
+						<div class="sheet-cell sheet-col1">Native</div>
+						<div class="sheet-cell sheet-col2">Native</div>
+						<div class="sheet-cell sheet-col3">0</div>
+					</div> <!-- .sheet-header -->
+				</div> <!-- .sheet-row -->
 				<fieldset class="repeating_languages">
 					<div class="sheet-row sheet-row-stats">
 						<div class="sheet-cell sheet-col0">
@@ -1201,10 +1212,10 @@
 				</fieldset> <!-- .repeating_languages -->
 			</div> <!-- .sheet-table -->
 		</div> <!-- .sheet-box .sheet-language -->
-		
-		
+
+
 		<!-- _____ _____ CULTURE BOX _____ _____ -->
-		
+
 		<div class="sheet-box sheet-culture">
 			<div class="sheet-table">
 				<div class="sheet-header">
@@ -1220,35 +1231,21 @@
 							<input type="number" name="attr_points" />
 						</div>
 					</div> <!-- .sheet-row -->
-				</fieldset> <!-- .repeating_languages -->
+				</fieldset> <!-- .repeating_cultures -->
 			</div> <!-- .sheet-table -->
-		</div> <!-- .sheet-box .sheet-language -->
-		
+		</div> <!-- .sheet-box .sheet-culture -->
+
 		<div class="sheet-clearfix"> </div>
-		
-		
-		<!-- _____ _____ ADVENTAGES BOX _____ _____ -->
+
+
+		<!-- _____ _____ ADVANTAGES BOX _____ _____ -->
 		<!-- this box uses the identifier "traits" for backwards compatibility -->
 
 		<div class="sheet-box sheet-traits">
 			<div class="sheet-table">
 				<div class="sheet-header">
-					<div class="sheet-cell sheet-col0">Advantages</div>
-					<div class="sheet-cell sheet-col1">
-						<div class="sheet-popup">CR</div>
-						<span class="sheet-tooltip">
-							Control Rating
-							<br />
-							<table>
-								<tbody>
-									<tr><td>6 or less</td><td>2x</td></tr>
-									<tr><td>9 or less</td><td>1.5x</td></tr>
-									<tr><td>12 or less</td><td>1x</td></tr>
-									<tr><td>15 or less</td><td>0.5x</td></tr>
-								</tbody>
-							</table>
-						</span>
-					</div>
+					<div class="sheet-cell sheet-col0">Advantages (& Perks)</div>
+					<div class="sheet-cell sheet-col1"></div>
 					<div class="sheet-cell sheet-col2">Pts</div>
 					<div class="sheet-cell sheet-col3">Ref</div>
 				</div> <!-- .sheet-header -->
@@ -1260,7 +1257,7 @@
 							<input type="text" name="attr_name" />
 						</div>
 						<div class="sheet-cell sheet-col1">
-							<input type="number" name="attr_control_rating" />
+							
 						</div>
 						<div class="sheet-cell sheet-col2">
 							<input type="number" name="attr_points" />
@@ -1281,14 +1278,17 @@
 			</div> <!-- .sheet-table -->
 		</div> <!-- .sheet-box .sheet-traits -->
 
+
+		<!-- _____ _____ DISADVANTAGES BOX _____ _____ -->
+
 		<div class="sheet-box sheet-disadvantages">
 			<div class="sheet-table">
 				<div class="sheet-header">
-					<div class="sheet-cell sheet-col0">Disadvantages</div>
+					<div class="sheet-cell sheet-col0">Disadvantages (& Quirks)</div>
 					<div class="sheet-cell sheet-col1">
-						<div class="sheet-popup">CR</div>
+						<div class="sheet-popup">SCN</div>
 						<span class="sheet-tooltip">
-							Control Rating
+							Self-control Number
 							<br />
 							<table>
 								<tbody>
@@ -1300,8 +1300,10 @@
 							</table>
 						</span>
 					</div>
-					<div class="sheet-cell sheet-col2">Pts</div>
-					<div class="sheet-cell sheet-col3">Ref</div>
+					<div class="sheet-cell sheet-col2"></div>
+					<div class="sheet-cell sheet-col3">Pts</div>
+					<div class="sheet-cell sheet-col4">Ref</div>	
+
 				</div> <!-- .sheet-header -->
 				<fieldset class="repeating_disadvantages">
 					<input class="sheet-toggle" type="checkbox" />
@@ -1314,9 +1316,12 @@
 							<input type="number" name="attr_control_rating" />
 						</div>
 						<div class="sheet-cell sheet-col2">
-							<input type="number" name="attr_points" />
+							<button type="roll" value="@{roll} [[3d6]] @{VS} @{name} [[@{control_rating} + @{modifier}]]" name="roll_vsDSCR" />
 						</div>
 						<div class="sheet-cell sheet-col3">
+							<input type="number" name="attr_points" />
+						</div>
+						<div class="sheet-cell sheet-col4">
 							<input type="text" name="attr_ref" />
 						</div>
 					</div> <!-- .sheet-row -->
@@ -1332,14 +1337,17 @@
 			</div> <!-- .sheet-table -->
 		</div> <!-- .sheet-box .sheet-disadvantages -->
 
+
+		<!-- _____ _____ RACIAL TRAITS BOX _____ _____ -->
+
 		<div class="sheet-box sheet-racial">
 			<div class="sheet-table">
 				<div class="sheet-header">
 					<div class="sheet-cell sheet-col0">Racial Traits</div>
 					<div class="sheet-cell sheet-col1">
-						<div class="sheet-popup">CR</div>
+						<div class="sheet-popup">SCN</div>
 						<span class="sheet-tooltip">
-							Control Rating
+							Self-control Number
 							<br />
 							<table>
 								<tbody>
@@ -1351,8 +1359,9 @@
 							</table>
 						</span>
 					</div>
-					<div class="sheet-cell sheet-col2">Pts</div>
-					<div class="sheet-cell sheet-col3">Ref</div>
+					<div class="sheet-cell sheet-col2"></div>
+					<div class="sheet-cell sheet-col3">Pts</div>
+					<div class="sheet-cell sheet-col4">Ref</div>
 				</div> <!-- .sheet-header -->
 				<fieldset class="repeating_racial">
 					<input class="sheet-toggle" type="checkbox" />
@@ -1365,9 +1374,12 @@
 							<input type="number" name="attr_control_rating" />
 						</div>
 						<div class="sheet-cell sheet-col2">
-							<input type="number" name="attr_points" />
+							<button type="roll" value="@{roll} [[3d6]] @{VS} @{name} [[@{control_rating} + @{modifier}]]" name="roll_vsRSCR" />
 						</div>
 						<div class="sheet-cell sheet-col3">
+							<input type="number" name="attr_points" />
+						</div>
+						<div class="sheet-cell sheet-col4">
 							<input type="text" name="attr_ref" />
 						</div>
 					</div> <!-- .sheet-row -->
@@ -1379,9 +1391,9 @@
 							<input type="text" name="attr_notes" />
 						</div>
 					</div> <!-- .sheet-row -->
-				</fieldset> <!-- .repeating_disadvantages -->
+				</fieldset> <!-- .repeating_racial -->
 			</div> <!-- .sheet-table -->
-		</div> <!-- .sheet-box .sheet-disadvantages -->
+		</div> <!-- .sheet-box .sheet-racial -->
 
 	</div> <!-- .sheet-tab2 -->
 
@@ -1390,7 +1402,7 @@
 	<div class="sheet-tab3">
 
 		<!-- _____ _____ SKILLS BOX _____ _____ -->
-	
+
 		<div class="sheet-box sheet-skills">
 			<div class="sheet-table">
 				<div class="sheet-header">
@@ -1443,7 +1455,7 @@
 							<input type="number" name="attr_bonus" value="0" />
 						</div>
 						<div class="sheet-cell sheet-col6">
-							<input type="number" name="attr_points" />
+							<input type="number" name="attr_points" value="0" />
 						</div>
 						<div class="sheet-cell sheet-col7">
 							<input type="text" name="attr_ref" />
@@ -1463,7 +1475,7 @@
 
 
 		<!-- _____ _____ TECHNIQUES BOX _____ _____ -->
-		
+
 		<div class="sheet-box sheet-techniques">
 			<div class="sheet-table">
 				<div class="sheet-header">
@@ -1503,7 +1515,7 @@
 							<input type="number" name="attr_bonus" value="0" />
 						</div>
 						<div class="sheet-cell sheet-col7">
-							<input type="number" name="attr_points" />
+							<input type="number" name="attr_points" value="0" />
 						</div>
 						<div class="sheet-cell sheet-col8">
 							<input type="text" name="attr_ref" />
@@ -1517,10 +1529,10 @@
 							<input type="text" name="attr_notes" />
 						</div>
 					</div> <!-- .sheet-row -->
-				</fieldset> <!-- .repeating_skills -->
+				</fieldset> <!-- .repeating_techniques -->
 			</div> <!-- .sheet-table -->
-		</div> <!-- .sheet-box .sheet-skills -->
-	
+		</div> <!-- .sheet-box .sheet-techniques -->
+
 	</div> <!-- .sheet-tab3 -->
 
 
@@ -1528,7 +1540,7 @@
 	<div class="sheet-tab4">
 
 		<!-- _____ _____ HIT LOCATION BOX _____ _____ -->
-		
+
 		<div class="sheet-box sheet-damage-reduction">
 			<div class="sheet-table">
 				<div class="sheet-header sheet-row-title">
@@ -1538,190 +1550,163 @@
 				</div> <!-- .sheet-header -->
 				<div class="sheet-header">
 					<div class="sheet-cell sheet-col0">Where</div>
-					<div class="sheet-cell sheet-col1">Penalty</div>
+					<div class="sheet-cell sheet-col1">
+						<div class="sheet-popup">Pen</div>
+						<span class="sheet-tooltip">
+							This is the <strong>Penalty</strong> <br />
+                                                        applied to attack the <br />
+                                                        specific location.
+						</span>
+					</div>
 					<div class="sheet-cell sheet-col2">DR</div>
 				</div> <!-- .sheet-row -->
 				<div class="sheet-row sheet-row-skull">
 					<div class="sheet-cell sheet-col0 sheet-label">
-						Skull
+						<input type="text" name="attr_name_skull" value="Skull" />
 					</div>
 					<div class="sheet-cell sheet-col1">
-						-7
+						<input type="text" name="attr_hit_penalty_skull" value="-7" />
 					</div>
 					<div class="sheet-cell sheet-col2">
-						<input type="number" name="attr_skull_dr_max" value="2" />
-					</div>
-					<div class="sheet-cell sheet-col3">
-						<input type="number" name="attr_skull_dr" />
+						<input type="text" name="attr_skull_dr_max" value="2" />
 					</div>
 				</div> <!-- .sheet-row -->
 				<div class="sheet-row sheet-row-face">
 					<div class="sheet-cell sheet-col0 sheet-label">
-						Face
+						<input type="text" name="attr_name_face" value="Face" />
 					</div>
 					<div class="sheet-cell sheet-col1">
-						-5
+						<input type="text" name="attr_hit_penalty_face" value="-5" />
 					</div>
 					<div class="sheet-cell sheet-col2">
-						<input type="number" name="attr_face_dr_max" value="0" />
-					</div>
-					<div class="sheet-cell sheet-col3">
-						<input type="number" name="attr_face_dr" />
+						<input type="text" name="attr_face_dr_max" value="0" />
 					</div>
 				</div> <!-- .sheet-row -->
 				<div class="sheet-row sheet-row-eyes">
 					<div class="sheet-cell sheet-col0 sheet-label">
-						Eyes
+						<input type="text" name="attr_name_eyes" value="Eyes" />
 					</div>
 					<div class="sheet-cell sheet-col1">
-						-9
+						<input type="text" name="attr_hit_penalty_eyes" value="-9" />
 					</div>
 					<div class="sheet-cell sheet-col2">
-						<input type="number" name="attr_eyes_dr_max" value="0" />
-					</div>
-					<div class="sheet-cell sheet-col3">
-						<input type="number" name="attr_eyes_dr" />
+						<input type="text" name="attr_eyes_dr_max" value="0" />
 					</div>
 				</div> <!-- .sheet-row -->
-				<div class="sheet-row sheet-row-eyes">
+				<div class="sheet-row sheet-row-neck">
 					<div class="sheet-cell sheet-col0 sheet-label">
-						Neck
+						<input type="text" name="attr_name_neck" value="Neck" />
 					</div>
 					<div class="sheet-cell sheet-col1">
-						-5
+						<input type="text" name="attr_hit_penalty_neck" value="-5" />
 					</div>
 					<div class="sheet-cell sheet-col2">
-						<input type="number" name="attr_neck_dr_max" value="0" />
-					</div>
-					<div class="sheet-cell sheet-col3">
-						<input type="number" name="attr_neck_dr" />
+						<input type="text" name="attr_neck_dr_max" value="0" />
 					</div>
 				</div> <!-- .sheet-row -->
-				<div class="sheet-row sheet-row-r-arm">
+				<div class="sheet-row sheet-row-arms">
 					<div class="sheet-cell sheet-col0 sheet-label">
-						Arms
+						<input type="text" name="attr_name_arms" value="Arms" />
 					</div>
 					<div class="sheet-cell sheet-col1">
-						-2
+						<input type="text" name="attr_hit_penalty_arms" value="-2" />
 					</div>
 					<div class="sheet-cell sheet-col2">
-						<input type="number" name="attr_arms_dr_max" value="0" />
-					</div>
-					<div class="sheet-cell sheet-col3">
-						<input type="number" name="attr_arms_dr" />
+						<input type="text" name="attr_arms_dr_max" value="0" />
 					</div>
 				</div> <!-- .sheet-row -->
 				<div class="sheet-row sheet-row-hands">
 					<div class="sheet-cell sheet-col0 sheet-label">
-						Hands
+						<input type="text" name="attr_name_hands" value="Hands" />
 					</div>
 					<div class="sheet-cell sheet-col1">
-						-4
+						<input type="text" name="attr_hit_penalty_hands" value="-4" />
 					</div>
 					<div class="sheet-cell sheet-col2">
-						<input type="number" name="attr_hands_dr_max" value="0" />
-					</div>
-					<div class="sheet-cell sheet-col3">
-						<input type="number" name="attr_hands_dr" />
+						<input type="text" name="attr_hands_dr_max" value="0" />
 					</div>
 				</div> <!-- .sheet-row -->
 				<div class="sheet-row sheet-row-torso">
 					<div class="sheet-cell sheet-col0 sheet-label">
-						Torso
+						<input type="text" name="attr_name_torso" value="Torso" />
 					</div>
 					<div class="sheet-cell sheet-col1">
-						0
+						<input type="text" name="attr_hit_penalty_torso" value="0" />
 					</div>
 					<div class="sheet-cell sheet-col2">
-						<input type="number" name="attr_torso_dr_max" value="0" />
-					</div>
-					<div class="sheet-cell sheet-col3">
-						<input type="number" name="attr_torso_dr" />
+						<input type="text" name="attr_torso_dr_max" value="0" />
 					</div>
 				</div> <!-- .sheet-row -->
 				<div class="sheet-row sheet-row-vitals">
 					<div class="sheet-cell sheet-col0 sheet-label">
-						Vitals
+						<input type="text" name="attr_name_vitals" value="Vitals" />
 					</div>
 					<div class="sheet-cell sheet-col1">
-						-3
+						<input type="text" name="attr_hit_penalty_vitals" value="-3" />
 					</div>
 					<div class="sheet-cell sheet-col2">
-						<input type="number" name="attr_vitals_dr_max" value="0" />
-					</div>
-					<div class="sheet-cell sheet-col3">
-						<input type="number" name="attr_vitals_dr" />
+						<input type="text" name="attr_vitals_dr_max" value="0" />
 					</div>
 				</div> <!-- .sheet-row -->
-				<div class="sheet-row sheet-row-groind">
+				<div class="sheet-row sheet-row-groin">
 					<div class="sheet-cell sheet-col0 sheet-label">
-						Groin
+						<input type="text" name="attr_name_groin" value="Groin" />
 					</div>
 					<div class="sheet-cell sheet-col1">
-						-3
+						<input type="text" name="attr_hit_penalty_groin" value="-3" />
 					</div>
 					<div class="sheet-cell sheet-col2">
-						<input type="number" name="attr_groind_dr_max" value="0" />
-					</div>
-					<div class="sheet-cell sheet-col3">
-						<input type="number" name="attr_groind_dr" />
+						<input type="text" name="attr_groind_dr_max" value="0" />
 					</div>
 				</div> <!-- .sheet-row -->
-				<div class="sheet-row sheet-row-l-leg">
+				<div class="sheet-row sheet-row-legs">
 					<div class="sheet-cell sheet-col0 sheet-label">
-						Legs
+						<input type="text" name="attr_name_legs" value="Legs" />
 					</div>
 					<div class="sheet-cell sheet-col1">
-						-2
+						<input type="text" name="attr_hit_penalty_legs" value="-2" />
 					</div>
 					<div class="sheet-cell sheet-col2">
-						<input type="number" name="attr_legs_dr" value="0" />
-					</div>
-					<div class="sheet-cell sheet-col3">
-						<input type="number" name="attr_legs_dr_max" />
+						<input type="text" name="attr_legs_dr_max" value="0" />
 					</div>
 				</div> <!-- .sheet-row -->
 				<div class="sheet-row sheet-row-feet">
 					<div class="sheet-cell sheet-col0 sheet-label">
-						Feet
+						<input type="text" name="attr_name_feet" value="Feet" />
 					</div>
 					<div class="sheet-cell sheet-col1">
-						-4
+						<input type="text" name="attr_hit_penalty_feet" value="-4" />
 					</div>
 					<div class="sheet-cell sheet-col2">
-						<input type="number" name="attr_feet_dr" value="0" />
-					</div>
-					<div class="sheet-cell sheet-col3">
-						<input type="number" name="attr_feet_dr_max" />
+						<input type="text" name="attr_feet_dr_max" value="0" />
 					</div>
 				</div> <!-- .sheet-row -->
-				<div class="sheet-row sheet-row-r-foot">
+				<div class="sheet-row sheet-row-area">
 					<div class="sheet-cell sheet-col0 sheet-label">
-						Area
+						<input type="text" name="attr_name_area" value="Area" />
 					</div>
 					<div class="sheet-cell sheet-col1">
-						-
+						<input type="text" name="attr_hit_penalty_area" value="n/a" />
 					</div>
 					<div class="sheet-cell sheet-col2">
-						<input type="number" name="attr_area_dr" value="0" />
-					</div>
-					<div class="sheet-cell sheet-col3">
-						<input type="number" name="attr_area_dr_max" />
+						<input type="text" name="attr_area_dr_max" value="0" />
 					</div>
 				</div> <!-- .sheet-row -->
+				<div class="sheet-header sheet-row-title">
+					<div class="sheet-cell sheet-col0">
+						User Created
+					</div>
+				</div> <!-- .sheet-header -->
 				<fieldset class="repeating_location">
 					<div class="sheet-row sheet-row-stats">
 						<div class="sheet-cell sheet-col0 sheet-label">
 							<input type="text" name="attr_name" />
 						</div>
 						<div class="sheet-cell sheet-col1">
-							<input type="number" name="hit_penalty" />
+							<input type="text" name="attr_hit_penalty" value="0" />
 						</div>
 						<div class="sheet-cell sheet-col2">
-							<input type="number" name="attr_dr" value="0" />
-						</div>
-						<div class="sheet-cell sheet-col3">
-							<input type="number" name="attr_dr_max" />
+							<input type="text" name="attr_dr_max" value="0" />
 						</div>
 					</div> <!-- .sheet-row -->
 				</fieldset>
@@ -1730,7 +1715,7 @@
 
 
 		<!-- _____ _____ ACTIVE DEFENSE BOX _____ _____ -->
-	
+
 		<div class="sheet-box sheet-active-defense">
 			<div class="sheet-table">
 				<div class="sheet-header">
@@ -1795,7 +1780,7 @@
 
 
 		<!-- _____ _____ MELEE ATTACKS BOX _____ _____ -->
-	
+
 		<div class="sheet-box sheet-melee-attacks">
 			<div class="sheet-table">
 				<div class="sheet-header">
@@ -1829,24 +1814,23 @@
 								<thead>
 									<tr>
 										<th>Abbr</th>
-										<th>Multiplier</th>
 										<th>Name</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr><td>cut</td> <td>x1.5</td><td>Cutting</td></tr>
-									<tr><td>imp</td> <td>x2.0</td><td>Impaling</td></tr>
-									<tr><td>cr</td>  <td>x1.0</td><td>Crushing</td></tr>
-									<tr><td>pi-</td> <td>x0.5</td><td>Small Piercing</td></tr>
-									<tr><td>pi</td>  <td>x1.0</td><td>Piercing</td></tr>
-									<tr><td>pi+</td> <td>x1.5</td><td>Large Piercing</td></tr>
-									<tr><td>pi++</td><td>x2.0</td><td>Huge Piercing</td></tr>
-									<tr><td>aff</td> <td>-</td><td>Affliction</td></tr>
-									<tr><td>burn</td><td>x1.0</td><td>Burning</td></tr>
-									<tr><td>cor</td> <td>x1.0</td><td>Corrosion</td></tr>
-									<tr><td>fat</td> <td>x1.0</td><td>Fatigue</td></tr>
-									<tr><td>tox</td> <td>x1.0</td><td>Toxic</td></tr>
-									<tr><td>spec</td><td>-</td><td>Special</td></tr>
+									<tr><td>cut</td> <td>Cutting</td></tr>
+									<tr><td>imp</td> <td>Impaling</td></tr>
+									<tr><td>cr</td>  <td>Crushing</td></tr>
+									<tr><td>pi-</td> <td>Small Piercing</td></tr>
+									<tr><td>pi</td>  <td>Piercing</td></tr>
+									<tr><td>pi+</td> <td>Large Piercing</td></tr>
+									<tr><td>pi++</td><td>Huge Piercing</td></tr>
+									<tr><td>aff</td> <td>Affliction</td></tr>
+									<tr><td>burn</td><td>Burning</td></tr>
+									<tr><td>cor</td> <td>Corrosion</td></tr>
+									<tr><td>fat</td> <td>Fatigue</td></tr>
+									<tr><td>tox</td> <td>Toxic</td></tr>
+									<tr><td>spec</td><td>Special</td></tr>
 								</tbody>
 							</table>
 						</span>
@@ -1890,7 +1874,7 @@
 							<input type="text" name="attr_skill" />
 						</div>
 						<div class="sheet-cell sheet-col6">
-							<button type="roll" value="@{roll} [[3d6]] @{VS} @{name} [[@{skill} + @{modifier}]]" name="roll_vsSL" />
+							<button type="roll" value="@{roll} [[3d6]] @{VS} @{name} [[@{skill} + @{modifier}]] **Notes:** @{notes}" name="roll_vsSL" />
 						</div>
 					</div> <!-- .sheet-row -->
 					<div class="sheet-row sheet-row-details">
@@ -1904,16 +1888,16 @@
 				</fieldset> <!-- .repeating_melee -->
 			</div> <!-- .sheet-table -->
 		</div> <!-- .sheet-box .sheet-melee-attacks -->
-	
+
 
 		<!-- _____ _____ RANGED ATTACKS BOX _____ _____ -->
-	
+
 		<div class="sheet-box sheet-ranged-attacks">
 			<div class="sheet-table">
 				<div class="sheet-header">
 					<div class="sheet-cell sheet-col0">Ranged Attacks</div>
 					<div class="sheet-cell sheet-col1">
-						<div class="sheet-popup">Range</div>
+						<div class="sheet-popup">RNG</div>
 						<span class="sheet-tooltip">
 							See page 269.
 						</span>
@@ -1953,7 +1937,7 @@
 					</div>
 					<div class="sheet-cell sheet-col5">Bulk</div>
 					<div class="sheet-cell sheet-col6">
-						<div class="sheet-popup">Recoil</div>
+						<div class="sheet-popup">RCL</div>
 						<span class="sheet-tooltip">
 							When firing at RoF 2+, every full multiple of Rcl<br />
 							by which you make your attack roll means you score<br />
@@ -1961,7 +1945,7 @@
 							to total shots fired. See page 373.
 						</span>
 					</div>
-					<div class="sheet-cell sheet-col7">Damage</div>
+					<div class="sheet-cell sheet-col7">DAM</div>
 					<div class="sheet-cell sheet-col8">
 						<div class="sheet-popup">Type</div>
 						<span class="sheet-tooltip">
@@ -1969,24 +1953,23 @@
 								<thead>
 									<tr>
 										<th>Abbr</th>
-										<th>Multiplier</th>
 										<th>Name</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr><td>cut</td> <td>x1.5</td><td>Cutting</td></tr>
-									<tr><td>imp</td> <td>x2.0</td><td>Impaling</td></tr>
-									<tr><td>cr</td>  <td>x1.0</td><td>Crushing</td></tr>
-									<tr><td>pi-</td> <td>x0.5</td><td>Small Piercing</td></tr>
-									<tr><td>pi</td>  <td>x1.0</td><td>Piercing</td></tr>
-									<tr><td>pi+</td> <td>x1.5</td><td>Large Piercing</td></tr>
-									<tr><td>pi++</td><td>x2.0</td><td>Huge Piercing</td></tr>
-									<tr><td>aff</td> <td>-</td><td>Affliction</td></tr>
-									<tr><td>burn</td><td>x1.0</td><td>Burning</td></tr>
-									<tr><td>cor</td> <td>x1.0</td><td>Corrosion</td></tr>
-									<tr><td>fat</td> <td>x1.0</td><td>Fatigue</td></tr>
-									<tr><td>tox</td> <td>x1.0</td><td>Toxic</td></tr>
-									<tr><td>spec</td><td>-</td><td>Special</td></tr>
+									<tr><td>cut</td> <td>Cutting</td></tr>
+									<tr><td>imp</td> <td>Impaling</td></tr>
+									<tr><td>cr</td>  <td>Crushing</td></tr>
+									<tr><td>pi-</td> <td>Small Piercing</td></tr>
+									<tr><td>pi</td>  <td>Piercing</td></tr>
+									<tr><td>pi+</td> <td>Large Piercing</td></tr>
+									<tr><td>pi++</td><td>Huge Piercing</td></tr>
+									<tr><td>aff</td> <td>Affliction</td></tr>
+									<tr><td>burn</td><td>Burning</td></tr>
+									<tr><td>cor</td> <td>Corrosion</td></tr>
+									<tr><td>fat</td> <td>Fatigue</td></tr>
+									<tr><td>tox</td> <td>Toxic</td></tr>
+									<tr><td>spec</td><td>Special</td></tr>
 								</tbody>
 							</table>
 						</span>
@@ -2030,10 +2013,12 @@
 								<option value="Piercing (pi)">pi</option>
 								<option value="Large Piercing (pi+)">pi+</option>
 								<option value="Huge Piercing (pi++)">pi++</option>
+								<option value="Affliction (aff)">aff</option>
 								<option value="Burning (burn)">burn</option>
 								<option value="Corrosion (cor)">cor</option>
 								<option value="Fatigue (fat)">fat</option>
 								<option value="Toxic (tox)">tox</option>
+								<option value="Special (spec)">spec</option>
 							</select>
 						</div>
 						<div class="sheet-cell sheet-col9">
@@ -2043,7 +2028,7 @@
 							<input type="text" name="attr_skill" />
 						</div>
 						<div class="sheet-cell sheet-col11">
-							<button type="roll" value="@{roll} [[3d6]] @{VS} @{name} [[@{skill} + @{modifier}]]" name="roll_vsSL" />
+							<button type="roll" value="@{roll} [[3d6]] @{VS} @{name} [[@{skill} + @{modifier}]] **Recoil: @{recoil} | Notes:** @{notes}" name="roll_vsSL" />
 						</div>
 					</div> <!-- .sheet-row -->
 					<div class="sheet-row sheet-row-details">
@@ -2057,8 +2042,8 @@
 				</fieldset> <!-- .repeating_ranged -->
 			</div> <!-- .sheet-table -->
 		</div> <!-- .sheet-box .sheet-ranged-attacks -->
-	
-	</div> <!-- .sheet-tab4 -->    
+
+	</div> <!-- .sheet-tab4 -->
 
 
 	<!-- ===== ===== ===== ===== ITEMS TAB ===== ===== ===== ===== -->
@@ -2067,12 +2052,14 @@
 		<!-- _____ _____ QUICK INVENTORY BOX _____ _____ -->
 
 		<div class="sheet-box sheet-quick-inventory sheet-textarea">
-			<div class="sheet-label">Quick Inventory</div>
+			<div class="sheet-header"> 
+				<div class="sheet-cell sheet-col0">Quick Inventory & Wealth</div>
+			</div>
 			<textarea name="attr_quick_inventory"></textarea>
 		</div>
 
-		<!-- _____ _____ WEALTH BOX _____ _____ -->
-	
+		<!-- _____ _____ INVENTORY BOX _____ _____ -->
+
 		<div class="sheet-box sheet-items">
 			<div class="sheet-table">
 				<div class="sheet-header">
@@ -2141,9 +2128,9 @@
 					</div>
 				</div> <!-- .sheet-row -->
 			</div> <!-- .sheet-table -->
-		</div> <!-- .sheet-box .sheet-skills -->
-	
-	</div> <!-- .sheet-tab5 -->       
+		</div> <!-- .sheet-box .sheet-items -->
+
+	</div> <!-- .sheet-tab5 -->
 
 
 	<!-- ===== ===== ===== ===== GRIMOIRE TAB ===== ===== ===== ===== -->
@@ -2175,7 +2162,7 @@
 
 
 		<!-- _____ _____ SPELLS BOX _____ _____ -->
-	
+
 		<div class="sheet-box sheet-spells">
 			<div class="sheet-table">
 				<div class="sheet-header">
@@ -2201,7 +2188,7 @@
 							<button type="roll" value="@{roll} [[3d6]] @{VS} @{name} [[@{level} + @{modifier}]]" name="roll_vsSL" />
 						</div>
 						<div class="sheet-cell sheet-col2">
-							<input type="text" name="attr_level" disabled="disabled" 
+							<input type="text" name="attr_level" disabled="disabled"
 								value="@{spell_base} + @{difficulty} + @{spell_bonus} + (floor((@{points} * 0.25) + 2) * ceil( ( ( @{points} - 2 ) + abs( @{points} - 2) ) / 256 ) + @{points} * abs( ceil( ( ( @{points} - 2 ) + abs( @{points} - 2) ) / 256 ) - 1 ))"/>
 						</div>
 						<div class="sheet-cell sheet-col3">
@@ -2211,7 +2198,7 @@
 							</select>
 						</div>
 						<div class="sheet-cell sheet-col4">
-							<input type="number" name="attr_points" />
+							<input type="number" name="attr_points" value"0" />
 						</div>
 						<div class="sheet-cell sheet-col5">
 							<input type="text" name="attr_casttime" />
@@ -2242,7 +2229,113 @@
 		</div> <!-- .sheet-box .sheet-spells -->
 	</div> <!-- .sheet-tab6 -->
 
+    <!-- ===== ===== ===== ===== Revision History TAB ===== ===== ===== ===== -->
+	<div class="sheet-tab7">
 
+        <div>
+           <h3>Known Issues</h3>
+
+            <ul>
+                <li>Unable to delete a Technique</li>
+            </ul>
+
+           <h3>Revision History</h3>
+                  
+            <p>To report an Issues or a Suggestion, please use the Roll20 forum under Character Sheets & Compendium. 
+            I have created a thread named: [GURPS] - Sheet #1 - Thread 1 (that seems to be similar to the naming
+            convention used by other sheets). In your post, please specify if it is an Issue or Suggestion with as much 
+            detail information as possible. Screen shots help a lot!
+            I am just learning to work with HTML and CSS so I may not be able to do everything requested. I make no
+            promises on how fast I may be able to implement a Fix or a Suggestion - so please be patient. -Thanks, Mike W.</p>
+
+            <p>If there are others that are working on or wish to work on this sheet, lets coordinate using the Roll20 
+            Forum for now (Like Tom and I are doing) - perhaps later we can use GitHub.</p>
+ 
+            <h4>Version: 1.3.7</h4>
+            
+            <p>Pull Request: 08/01/2018</p>
+            
+            <ul>
+                <li>Changes, Fixes, and Adds made by Mike W (UserID: 1414610</li>
+                <li>Fixed alignment issue with the Notes field Under Skills not Left Justified – Cosmetic Only </li>
+                <li>Changed Hit Location box to have an additional Header identifying User Created Locations – Cosmetic Only</li>
+                <li>Changed all fields in the Hit Location box to be editable. This will enable you to change the name of any of the default Locations and the To Hit Penalty - Request from Valter (User id: 285013)</li>
+                <li> Fixed Bug where some Hit Locations did not save their DR values</li>
+                <li>Removed and Deleted the CR Label and attr_control_rating for Advantages. The correct terminology is Self-control Number and this is not used for Advantages</li>
+                <li>Added an attribute for Native Language. Nothing fancy just a direct input - Requested by Flemmerr (User id: 1515009)</li>
+                <li>Added the Recoil attribute to the chat results for the Ranged Attacks macro – Cosmetic only</li>
+                <l>Changed the Label of “Disadvantages” to “Disadvantages (&Quirks)” – Cosmetic Only </li>
+		<l>Changed the Label of “Advantages” to “Advantages (& Perks)” – Cosmetic Only </li>
+                <li>Fixed many miscellaneous issues to existing table fieldsets</li>
+            </ul>
+
+
+            <h4>Version: 1.3.6</h4>
+            
+            <p>Pull Request: 07/25/2018</p>
+            
+            <ul>
+                <li>Changes, Fixes, and Adds made by Mike W (UserID: 1414610</li>
+                <li>Corrected spelling of Miscellaneous on the General page – Cosmetic only</li>
+                <li>Updated Tool Tip for Type under Melee Attacks and Ranged, removed the Multiplier information as it is irrelevant, also fixed the alignment – Cosmetic only</li>
+                <li>Added missing information from Type drop down for Ranged Attacks – missing was Affliction and Special</li>
+                <li>Changed the Label of ‘Quick Inventory’ to ‘Quick Inventory & Wealth’ and the Label left justified – Cosmetic only</li>
+                <li>Changed the Melee Attacks and Ranged Attacks macros to include the Notes attribute in the results in Chat – Cosmetic only </li>
+                <li>Changed all Die Macros to apply Bold to the Character Name in the results in Chat – Cosmetic only</li>
+                <li>Change when adding a new Skill, Technique, or Spell, the Points defaults to 0 instead of blank</li>
+                <li>Fixed minor spelling errors – Cosmetic only</li>
+                <li>Renamed Header of CR to SCN under Disadvantages and Racial Trains to reflect correct terminology – Cosmetic only</li>        
+                <li>Fixed Tool Tip of SCN (formerly CR) under Disadvantages and Racial Trains to reflect correct terminology – changed from ‘Control Rating’ to ‘Self-control Number’ – Cosmetic only</li>
+                <li>Added Macro for Self-control Number Roll within Disadvantages and Racial Traits</li>
+                <li>Changes and Adds requested by Mike W (@mike-w) (UserID: 1414610)</li>
+                <li>Spelling correction requested by Rabulias (@rabulias) (UserID: 4692)</li>
+            </ul>
+            
+            <h4>Version: 1.3.5</h4>
+            
+            <p>Pull Request: 7/17/2018</p>
+            
+            <ul>
+                <li>Changes made by Tom S</li>
+                <li>Changed the word Fear to Fright (Visibility only - no attributes where changed)</li>
+                <li>Changed the Macro result from vs. Will to vs. Fright</li>
+                <li>Changed the Hit Location DR input to accept text (so that you can add DR entries like 2* or 3/1*)</li>
+                <li>Changed the visible width of the DR field making it wider</li>
+                <li>Fixed bug in Hit Location Penalty not saving for added custom location</li>
+                <li>Added a Tool Tip for Pen header in Hit Location</li>
+                <li>Requested by Mike W (@mike-w) (UserID: 1414610) see: https://app.roll20.net/forum/post/6572120/</li>
+            </ul>
+            
+            <h4>Version: 1.3.4</h4>
+            
+            <p>Pull Request: 3/7/2018</p>
+            
+            <ul>
+		<li>Changes made by MadCoder https://github.com/MadCoder253/roll20-character-sheets/issues</li>
+                <li>Add Revision History Tab</li>
+                <li>Changed roll buttons to use dicefontd6 (requested by Mike W 
+                (@mike-w) (UserID: 1414610) see: https://app.roll20.net/forum/post/5845539/</li>
+                <li>Fix lift & encumbrance rounding error for low ST. Round to whole number. 
+                (requested by Lucy (@lucy) (UserID: 359497) see: https://app.roll20.net/forum/permalink/5142954/</li>
+            </ul>
+            
+            <h4>Version 1.3.3</h4>
+            
+            <p>Pull Request: 3/1/2018</p>
+            
+            <ul>
+		<li>Changes made by MadCoder https://github.com/MadCoder253/roll20-character-sheets/issues</li>
+                <li>Restyled tabs to work with Firefox and MS Edge</li>
+                <li>Traits tab -> disadvantages section: slight changes to column spacing</li>
+                <li>Combat tab -> Ranged attacks section: slight changes to column spacing and abbreviate titles</li>
+                <li>Skills Tab -> Techniques section: slight changes to column spacing</li>
+                <li>Added URL to GURPS roll20 wiki</li>
+            </ul>
+
+        </div>
+		
+	</div> <!-- .sheet-tab7 -->
+	
 	<div class="sheet-tab0">
 		<div class="sheet-options">
 			<div class="sheet-box">
@@ -2269,14 +2362,14 @@
 				</span>
 			</div>
 			<div class="sheet-box">
-				<input type="radio" name="attr_roll" value="@{character_name} rolls" checked="true" />
+				<input type="radio" name="attr_roll" value="**@{character_name}** rolls" checked="true" />
 				<span class="sheet-popup">Public Rolls</span>
 				<span class="sheet-tooltip">
 					All players will be able to see<br />
 					your skill level, roll and results.
 				</span>
 				<br />
-				<input type="radio" name="attr_roll" value="/w gm --l @{character_name} rolls" />
+				<input type="radio" name="attr_roll" value="/w gm --l **@{character_name}** rolls" />
 				<span class="sheet-popup">Private Skill Levels</span>
 				<span class="sheet-tooltip">
 					Only the GM will be able to see<br />
@@ -2286,7 +2379,7 @@
 					This will not affect damage rolls.
 				</span>
 				<br />
-				<input type="radio" name="attr_roll" value="/w gm @{character_name} rolls" />
+				<input type="radio" name="attr_roll" value="/w gm **@{character_name}** rolls" />
 				<span class="sheet-popup">Private Rolls</span>
 				<span class="sheet-tooltip">
 					Only the GM will see your skill<br />
@@ -2318,6 +2411,8 @@
 		<hr />
 		<img height="30px" src="http://www.sjgames.com/poweredbygurps/img/logo.gif" />
 		<hr />
+		<a href="https://wiki.roll20.net/GURPS_4th_Edition" target="_blank">GURPS 4th Edition Roll20 Wiki</a><br />
+		https://wiki.roll20.net/GURPS_4th_Edition
 	</div>
 </div>
 
@@ -2326,7 +2421,7 @@
 
 	var noop = function () {}; // do nothing.
 
-	var version = '1.3.2';
+	var version = '1.3.4';
 
 	var modCascade = true;
 	var modCascadeAll = true;
@@ -2435,7 +2530,7 @@
 	function getSum(total, num) {
 		return (+total || 0) + (+num || 0);
 	}
-	
+
 	// function to sum a field from a repeating section
 	function sumRepeating(sectionName, fieldName, callback) {
 		getSectionIDs(sectionName, function (ids) {
@@ -2563,15 +2658,7 @@
 			var mod = +v.hit_points_mod;
 			setAttrs({
 				hit_points_max: base + mod
-			}, {silent: false}, function () {
-				getAttrs(['hit_points'], function(v2) {
-					if (v2.hit_points == null) {
-						setAttrs({ hit_points: base }, {silent: false}, callback);
-					} else {
-						callback();
-					}
-				});
-			});
+			}, {silent: false}, callback);
 		});
 	}
 
@@ -2589,15 +2676,7 @@
 			var mod = +v.fatigue_points_mod;
 			setAttrs({
 				fatigue_points_max: base + mod
-			}, {silent: false}, function () {
-				getAttrs(['fatigue_points'], function(v2) {
-					if (v2.fatigue_points == null) {
-						setAttrs({ fatigue_points: base }, {silent: false}, callback);
-					} else {
-						callback();
-					}
-				});
-			});
+			}, {silent: false}, callback);
 		});
 	}
 
@@ -2650,11 +2729,11 @@
 		});
 	}
 
-	// Updage Willpower, Fear
+	// Updage Willpower, Fear (This is actually called Fright Chec - the General page reflects this)
 	on('change:intelligence change:willpower_points change:willpower_mod change:fear_check_points change:fear_check_mod', function (e) {
 		updateWill();
 	});
-	// Updage Willpower, Fear
+	// Updage Willpower, Fear (This is actually called Fright Chec - the General page reflects this)
 	function updateWill() {
 		console.log('********* updateWill *********');
 		getAttrs(['intelligence', 'intelligence_base', 'willpower_points', 'willpower_mod', 'fear_check_points', 'fear_check_mod'], function(v) {
@@ -2876,7 +2955,7 @@
 			setAttrs({ spells_points: v });
 		});
 	});
-		
+
 	// Update Summery
 	on('change:tl_pts change:appearance change:languages_points change:cf_points change:advantages_points change:disadvantages_points change:racial_points', function (e) {
 		getAttrs(['tl_pts', 'appearance', 'languages_points', 'cf_points', 'advantages_points', 'disadvantages_points', 'racial_points'], function(v) {
